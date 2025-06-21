@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Spo - Privacy-First Medical AI for Africa</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .slide {
+            min-height: 100vh;
+            display: none;
+            padding: 2rem;
+        }
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .medical-gradient {
+            background: linear-gradient(135deg, #2563eb 0%, #10b981 100%);
+        }
+        .emergency-gradient {
+            background: linear-gradient(135deg, #dc2626 0%, #f59e0b 100%);
+        }
+        .demo-phone {
+            width: 300px;
+            height: 600px;
+            background: #1f2937;
+            border-radius: 30px;
+            padding: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        .demo-screen {
+            width: 100%;
+            height: 100%;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+        .typing-animation {
+            animation: typing 2s infinite;
+        }
+        @keyframes typing {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0.3; }
+        }
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .slide-in {
+            animation: slideIn 0.5s ease-out;
+        }
+        @keyframes slideIn {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white font-sans">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-gray-900 bg-opacity-90 backdrop-blur-sm">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="text-xl font-bold text-blue-400">Mobile Spo</div>
+            <div class="flex space-x-4">
+                <button onclick="previousSlide()" class="text-gray-300 hover:text-white">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <span id="slideCounter" class="text-gray-300">1 / 12</span>
+                <button onclick="nextSlide()" class="text-gray-300 hover:text-white">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Slide 1: Title -->
+    <section class="slide active gradient-bg">
+        <div class="text-center max-w-4xl mx-auto">
+            <div class="mb-8">
+                <i class="fas fa-heartbeat text-6xl text-white mb-4"></i>
+            </div>
+            <h1 class="text-6xl font-bold mb-6 slide-in">Mobile Spo</h1>
+            <h2 class="text-3xl mb-8 text-blue-100 slide-in">Privacy-First Medical AI for Africa</h2>
+            <p class="text-xl mb-8 text-blue-100 slide-in">Democratizing healthcare access through intelligent, privacy-protected medical assistance</p>
+            <div class="flex justify-center space-x-8 text-sm">
+                <div class="text-center">
+                    <i class="fas fa-shield-alt text-2xl mb-2"></i>
+                    <p>100% Private</p>
+                </div>
+                <div class="text-center">
+                    <i class="fas fa-mobile-alt text-2xl mb-2"></i>
+                    <p>Any Device</p>
+                </div>
+                <div class="text-center">
+                    <i class="fas fa-globe-africa text-2xl mb-2"></i>
+                    <p>Africa-First</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 2: Problem Statement -->
+    <section class="slide">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-5xl font-bold mb-12 text-center text-red-400">The Healthcare Crisis</h2>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="space-y-8">
+                        <div class="bg-red-900 bg-opacity-30 p-6 rounded-lg border border-red-500">
+                            <h3 class="text-2xl font-bold mb-4 text-red-300">
+                                <i class="fas fa-exclamation-triangle mr-3"></i>
+                                Limited Access
+                            </h3>
+                            <p class="text-lg">Only 1 doctor per 2,500 people in rural South Africa vs WHO recommendation of 1:1,000</p>
+                        </div>
+                        
+                        <div class="bg-orange-900 bg-opacity-30 p-6 rounded-lg border border-orange-500">
+                            <h3 class="text-2xl font-bold mb-4 text-orange-300">
+                                <i class="fas fa-clock mr-3"></i>
+                                Long Wait Times
+                            </h3>
+                            <p class="text-lg">Average 4-6 hours wait time at public clinics, often for basic health questions</p>
+                        </div>
+                        
+                        <div class="bg-yellow-900 bg-opacity-30 p-6 rounded-lg border border-yellow-500">
+                            <h3 class="text-2xl font-bold mb-4 text-yellow-300">
+                                <i class="fas fa-user-secret mr-3"></i>
+                                Privacy Concerns
+                            </h3>
+                            <p class="text-lg">Existing AI health apps send sensitive data to foreign servers, violating privacy</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <div class="bg-gray-800 p-8 rounded-lg">
+                        <h3 class="text-3xl font-bold mb-6 text-red-400">Critical Statistics</h3>
+                        <div class="space-y-4">
+                            <div class="text-center">
+                                <div class="text-4xl font-bold text-red-500">73%</div>
+                                <p>of South Africans delay seeking medical help</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-4xl font-bold text-orange-500">2.5M</div>
+                                <p>people lack access to basic healthcare</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-4xl font-bold text-yellow-500">60%</div>
+                                <p>use feature phones, excluded from health apps</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 3: Our Solution -->
+    <section class="slide medical-gradient">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="text-5xl font-bold mb-12">Our Revolutionary Solution</h2>
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                <div class="bg-white bg-opacity-10 p-8 rounded-lg backdrop-blur-sm">
+                    <i class="fas fa-brain text-4xl mb-4 text-blue-200"></i>
+                    <h3 class="text-2xl font-bold mb-4">Privacy-First Medical AI</h3>
+                    <p class="text-lg">All health data processed locally - never leaves your infrastructure</p>
+                </div>
+                <div class="bg-white bg-opacity-10 p-8 rounded-lg backdrop-blur-sm">
+                    <i class="fas fa-phone text-4xl mb-4 text-green-200"></i>
+                    <h3 class="text-2xl font-bold mb-4">Universal Access</h3>
+                    <p class="text-lg">Works on smartphones AND feature phones via USSD</p>
+                </div>
+                <div class="bg-white bg-opacity-10 p-8 rounded-lg backdrop-blur-sm">
+                    <i class="fas fa-ambulance text-4xl mb-4 text-red-200"></i>
+                    <h3 class="text-2xl font-bold mb-4">Emergency Detection</h3>
+                    <p class="text-lg">Automatic crisis intervention with local emergency services</p>
+                </div>
+            </div>
+            <div class="bg-white bg-opacity-20 p-8 rounded-lg">
+                <h3 class="text-3xl font-bold mb-4">What Makes Us Unique</h3>
+                <div class="grid md:grid-cols-2 gap-6 text-left">
+                    <div>
+                        <h4 class="text-xl font-bold mb-2 text-blue-200">🔒 100% Local Processing</h4>
+                        <p>Unlike Babylon Health, Ada, or Symptom Checker apps that send data overseas</p>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold mb-2 text-green-200">📱 Feature Phone Support</h4>
+                        <p>First medical AI accessible via USSD - reaching 60% more users</p>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold mb-2 text-purple-200">🌍 Africa-Centric</h4>
+                        <p>Built for South African healthcare system with local emergency integration</p>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold mb-2 text-yellow-200">⚡ Real-time Emergency</h4>
+                        <p>Instant crisis detection and intervention - potentially life-saving</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 4: Technology Architecture -->
+    <section class="slide">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-5xl font-bold mb-12 text-center">Technology Architecture</h2>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="bg-gray-800 p-6 rounded-lg">
+                        <h3 class="text-2xl font-bold mb-6 text-blue-400">Privacy-First Stack</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-mobile-alt text-blue-400"></i>
+                                <span>React Native Frontend</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-server text-green-400"></i>
+                                <span>Node.js Backend API</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-brain text-purple-400"></i>
+                                <span>Local Medical AI (BioBERT)</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-database text-yellow-400"></i>
+                                <span>Encrypted MongoDB</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-phone text-red-400"></i>
+                                <span>USSD Gateway Integration</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="bg-gray-800 p-6 rounded-lg text-center">
+                        <h3 class="text-xl font-bold mb-4">Data Flow</h3>
+                        <div class="space-y-4 text-sm">
+                            <div class="bg-blue-600 p-3 rounded">User Input (Chat/USSD)</div>
+                            <div class="text-gray-400">↓</div>
+                            <div class="bg-green-600 p-3 rounded">Local AI Processing</div>
+                            <div class="text-gray-400">↓</div>
+                            <div class="bg-purple-600 p-3 rounded">Emergency Detection</div>
+                            <div class="text-gray-400">↓</div>
+                            <div class="bg-yellow-600 p-3 rounded">Encrypted Storage</div>
+                            <div class="text-gray-400">↓</div>
+                            <div class="bg-red-600 p-3 rounded">Response (Chat/Voice)</div>
+                        </div>
+                        <div class="mt-4 text-green-400 font-bold">
+                            🔒 No External APIs • 100% Local
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 5: Live Demo - Smartphone -->
+    <section class="slide">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-5xl font-bold mb-12 text-center">Live Demo: Smartphone App</h2>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="demo-phone mx-auto">
+                        <div class="demo-screen">
+                            <div id="demoChat" class="h-full flex flex-col">
+                                <!-- Demo will be populated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-3xl font-bold mb-6 text-blue-400">Key Features Demo</h3>
+                    <div class="space-y-6">
+                        <div class="bg-gray-800 p-4 rounded-lg">
+                            <h4 class="text-xl font-bold mb-2 text-green-400">✅ Medical AI Chat</h4>
+                            <p>Intelligent health consultation with topic classification</p>
+                        </div>
+                        <div class="bg-gray-800 p-4 rounded-lg">
+                            <h4 class="text-xl font-bold mb-2 text-red-400">🚨 Emergency Detection</h4>
+                            <p>Automatic crisis intervention with local resources</p>
+                        </div>
+                        <div class="bg-gray-800 p-4 rounded-lg">
+                            <h4 class="text-xl font-bold mb-2 text-purple-400">🏷️ Topic Classification</h4>
+                            <p>Pain management, mental health, illness categorization</p>
+                        </div>
+                        <div class="bg-gray-800 p-4 rounded-lg">
+                            <h4 class="text-xl font-bold mb-2 text-blue-400">💡 Smart Recommendations</h4>
+                            <p>Personalized health advice with medical disclaimers</p>
+                        </div>
+                    </div>
+                    <button onclick="startSmartphoneDemo()" class="mt-6 bg-blue-600 hover:bg-blue-700 px-8 py-3 rounded-lg font-bold pulse-animation">
+                        Start Demo
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 6: USSD Demo -->
+    <section class="slide">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-5xl font-bold mb-12 text-center">Revolutionary: USSD Medical AI</h2>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="bg-gray-800 p-8 rounded-lg">
+                        <h3 class="text-3xl font-bold mb-6 text-green-400">Feature Phone Access</h3>
+                        <div class="space-y-6">
+                            <div class="bg-green-900 bg-opacity-30 p-4 rounded border border-green-500">
+                                <h4 class="text-xl font-bold mb-2">Step 1: Dial USSD</h4>
+                                <p class="text-lg font-mono">*134*4357# (HELP)</p>
+                            </div>
+                            <div class="bg-blue-900 bg-opacity-30 p-4 rounded border border-blue-500">
+                                <h4 class="text-xl font-bold mb-2">Step 2: Get Callback</h4>
+                                <p>AI calls you back within 30 seconds</p>
+                            </div>
+                            <div class="bg-purple-900 bg-opacity-30 p-4 rounded border border-purple-500">
+                                <h4 class="text-xl font-bold mb-2">Step 3: Voice Consultation</h4>
+                                <p>Speak naturally with medical AI in your language</p>
+                            </div>
+                        </div>
+                        <button onclick="startUSSDDemo()" class="mt-6 bg-green-600 hover:bg-green-700 px-8 py-3 rounded-lg font-bold pulse-animation">
+                            Demo USSD Flow
+                        </button>
+                    </div>
+                </div>
+                <div>
+                    <div class="bg-gray-900 p-6 rounded-lg border-2 border-gray-600">
+                        <div class="bg-green-400 text-black p-2 text-center font-bold mb-4">
+                            Nokia 3310 - Feature Phone
+                        </div>
+                        <div id="ussdScreen" class="bg-black text-green-400 p-4 rounded font-mono text-sm min-h-64">
+                            <div class="text-center">
+                                Ready to dial...
+                                <br><br>
+                                Press Demo button to start
+                            </div>
+                        </div>
+                        <div class="mt-4 grid grid-cols-3 gap-2">
+                            <button class="bg-gray-700 p-2 rounded text-center">1</button>
+                            <button class="bg-gray-700 p-2 rounded text-center">2</button>
+                            <button class="bg-gray-700 p-2 rounded text-center">3</button>
+                            <button class="bg-gray-700 p-2 rounded text-center">4</button>
+                            <button class="bg-gray-700 p-2 rounded text-center">5</button>
+                            <button class="bg-gray-700 p-2 rounded text-center">6</button>
+                            <button class="bg-gray-700 p-2 rounded text-center">7</button>
+                            <button class="bg-gray-700 p-2 rounded text-center">8</button>
+                            <button class="bg-gray-700 p-2 rounded text-center">9</button>
+                            <button class="bg-gray-700 p-2 rounded text-center">*</button>
+                            <button class="bg-gray-700 p-2 rounded text-center">0</button>
+                            <button class="bg-gray-700 p-2 rounded text-center">#</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 7: Competitive Analysis -->
+    <section class="slide">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-5xl font-bold mb-12 text-center">Competitive Advantage</h2>
+            <div class="overflow-x-auto">
+                <table class="w-full bg-gray-800 rounded-lg overflow-hidden">
+                    <thead class="bg-blue-600">
+                        <tr>
+                            <th class="p-4 text-left">Feature</th>
+                            <th class="p-4 text-center">Mobile Spo</th>
+                            <th class="p-4 text-center">Babylon Health</th>
+                            <th class="p-4 text-center">Ada Health</th>
+                            <th class="p-4 text-center">WebMD</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b border-gray-700">
+                            <td class="p-4 font-bold">Privacy-First (Local Processing)</td>
+                            <td class="p-4 text-center text-green-400">✅ 100% Local</td>
+                            <td class="p-4 text-center text-red-400">❌ Cloud-based</td>
+                            <td class="p-4 text-center text-red-400">❌ Cloud-based</td>
+                            <td class="p-4 text-center text-red-400">❌ Cloud-based</td>
+                        </tr>
+                        <tr class="border-b border-gray-700">
+                            <td class="p-4 font-bold">Feature Phone Support (USSD)</td>
+                            <td class="p-4 text-center text-green-400">✅ Voice AI</td>
+                            <td class="p-4 text-center text-red-400">❌ App only</td>
+                            <td class="p-4 text-center text-red-400">❌ App only</td>
+                            <td class="p-4 text-center text-red-400">❌ Web only</td>
+                        </tr>
+                        <tr class="border-b border-gray-700">
+                            <td class="p-4 font-bold">Emergency Detection</td>
+                            <td class="p-4 text-center text-green-400">✅ Real-time</td>
+                            <td class="p-4 text-center text-yellow-400">⚠️ Limited</td>
+                            <td class="p-4 text-center text-yellow-400">⚠️ Basic</td>
+                            <td class="p-4 text-center text-red-400">❌ None</td>
+                        </tr>
+                        <tr class="border-b border-gray-700">
+                            <td class="p-4 font-bold">Local Emergency Integration</td>
+                            <td class="p-4 text-center text-green-400">✅ SA Numbers</td>
+                            <td class="p-4 text-center text-red-400">❌ UK-focused</td>
+                            <td class="p-4 text-center text-red-400">❌ EU-focused</td>
+                            <td class="p-4 text-center text-red-400">❌ US-focused</td>
+                        </tr>
+                        <tr class="border-b border-gray-700">
+                            <td class="p-4 font-bold">Multi-language (African)</td>
+                            <td class="p-4 text-center text-green-400">✅ 4 Languages</td>
+                            <td class="p-4 text-center text-yellow-400">⚠️ English only</td>
+                            <td class="p-4 text-center text-yellow-400">⚠️ Limited</td>
+                            <td class="p-4 text-center text-yellow-400">⚠️ English only</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 font-bold">Pricing</td>
+                            <td class="p-4 text-center text-green-400">Free + Premium</td>
+                            <td class="p-4 text-center text-red-400">$12/month</td>
+                            <td class="p-4 text-center text-red-400">$9/month</td>
+                            <td class="p-4 text-center text-yellow-400">Free + Ads</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="mt-8 text-center">
+                <div class="bg-green-900 bg-opacity-30 p-6 rounded-lg border border-green-500">
+                    <h3 class="text-2xl font-bold mb-4 text-green-400">Our Unique Value Proposition</h3>
+                    <p class="text-lg">The ONLY medical AI that combines privacy-first architecture, feature phone accessibility, and Africa-specific emergency integration</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 8: Market Opportunity -->
+    <section class="slide">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-5xl font-bold mb-12 text-center">Massive Market Opportunity</h2>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-3xl font-bold mb-8 text-blue-400">Total Addressable Market</h3>
+                    <div class="space-y-6">
+                        <div class="bg-blue-900 bg-opacity-30 p-6 rounded-lg border border-blue-500">
+                            <h4 class="text-2xl font-bold mb-2">South Africa</h4>
+                            <div class="text-4xl font-bold text-blue-400 mb-2">60M</div>
+                            <p>Population with limited healthcare access</p>
+                        </div>
+                        <div class="bg-green-900 bg-opacity-30 p-6 rounded-lg border border-green-500">
+                            <h4 class="text-2xl font-bold mb-2">Sub-Saharan Africa</h4>
+                            <div class="text-4xl font-bold text-green-400 mb-2">1.1B</div>
+                            <p>People needing accessible healthcare</p>
+                        </div>
+                        <div class="bg-purple-900 bg-opacity-30 p-6 rounded-lg border border-purple-500">
+                            <h4 class="text-2xl font-bold mb-2">Global Market Value</h4>
+                            <div class="text-4xl font-bold text-purple-400 mb-2">$45B</div>
+                            <p>Digital health market by 2026</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-3xl font-bold mb-8 text-green-400">Market Penetration Strategy</h3>
+                    <div class="space-y-4">
+                        <div class="bg-gray-800 p-4 rounded-lg">
+                            <h4 class="text-xl font-bold mb-2">Phase 1: South Africa (Year 1)</h4>
+                            <ul class="text-sm space-y-1">
+                                <li>• Target: 100K users</li>
+                                <li>• Focus: Rural communities</li>
+                                <li>• Revenue: $500K</li>
+                            </ul>
+                        </div>
+                        <div class="bg-gray-800 p-4 rounded-lg">
+                            <h4 class="text-xl font-bold mb-2">Phase 2: SADC Region (Year 2-3)</h4>
+                            <ul class="text-sm space-y-1">
+                                <li>• Target: 1M users</li>
+                                <li>• Countries: Botswana, Namibia, Zimbabwe</li>
+                                <li>• Revenue: $5M</li>
+                            </ul>
+                        </div>
+                        <div class="bg-gray-800 p-4 rounded-lg">
+                            <h4 class="text-xl font-bold mb-2">Phase 3: Sub-Saharan Africa (Year 4-5)</h4>
+                            <ul class="text-sm space-y-1">
+                                <li>• Target: 10M users</li>
+                                <li>• Countries: Nigeria, Kenya, Ghana</li>
+                                <li>• Revenue: $50M</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="mt-6 bg-yellow-900 bg-opacity-30 p-4 rounded-lg border border-yellow-500">
+                        <h4 class="text-lg font-bold mb-2 text-yellow-400">Key Success Factors</h4>
+                        <ul class="text-sm space-y-1">
+                            <li>• Partnership with telecom operators</li>
+                            <li>• Government healthcare integration</li>
+                            <li>• NGO and WHO collaboration</li>
+                            <li>• Local language support</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            document.getElementById('slideCounter').textContent = `${currentSlide + 1} / ${totalSlides}`;
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                previousSlide();
+            }
+        });
+
+        // Demo functions
+        function startSmartphoneDemo() {
+            const demoChat = document.getElementById('demoChat');
+            demoChat.innerHTML = `
+                <div class="bg-blue-600 text-white p-3 text-center">
+                    <h4 class="font-bold">Mobile Spo AI</h4>
+                </div>
+                <div class="flex-1 p-4 overflow-y-auto" id="chatMessages">
+                    <div class="mb-4">
+                        <div class="bg-gray-100 p-3 rounded-lg text-gray-800">
+                            <div class="flex items-center mb-2">
+                                <div class="w-6 h-6 bg-orange-400 rounded-full flex items-center justify-center mr-2">
+                                    <span class="text-white text-xs font-bold">AI</span>
+                                </div>
+                            </div>
+                            Hello! I'm your AI health assistant. How can I help you today?
+                        </div>
+                    </div>
+                </div>
+                <div class="p-3 border-t">
+                    <div class="flex space-x-2">
+                        <input type="text" id="demoInput" placeholder="Type your health question..." class="flex-1 p-2 border rounded text-gray-800">
+                        <button onclick="sendDemoMessage()" class="bg-blue-600 text-white px-4 py-2 rounded">Send</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function sendDemoMessage() {
+            const input = document.getElementById('demoInput');
+            const messages = document.getElementById('chatMessages');
+            const message = input.value.trim();
+            
+            if (!message) return;
+
+            // Add user message
+            messages.innerHTML += `
+                <div class="mb-4 text-right">
+                    <div class="bg-blue-600 text-white p-3 rounded-lg inline-block">
+                        ${message}
+                    </div>
+                </div>
+            `;
+
+            input.value = '';
+
+            // Simulate AI response
+            setTimeout(() => {
+                let response = '';
+                let isEmergency = false;
+                let topics = [];
+
+                if (message.toLowerCase().includes('headache') || message.toLowerCase().includes('pain')) {
+                    response = "I understand you're experiencing pain. Can you describe the type and intensity of your headache? This information will help me provide better guidance.";
+                    topics = ['Pain Management'];
+                } else if (message.toLowerCase().includes('anxious') || message.toLowerCase().includes('stress')) {
+                    response = "I hear that you're feeling anxious. It's important to know that you're not alone. Would you like to talk about what's been causing you stress?";
+                    topics = ['Mental Health'];
+                } else if (message.toLowerCase().includes('hurt myself') || message.toLowerCase().includes('suicide')) {
+                    response = "I'm very concerned about you. Please know that you're not alone and help is available. I'm connecting you with emergency resources right now.";
+                    isEmergency = true;
+                    topics = ['Mental Health', 'Emergency'];
+                } else {
+                    response = "Thank you for reaching out about your health. Can you provide more details about your symptoms or concerns?";
+                    topics = ['General Health'];
+                }
+
+                messages.innerHTML += `
+                    <div class="mb-4">
+                        <div class="bg-gray-100 p-3 rounded-lg text-gray-800">
+                            <div class="flex items-center mb-2">
+                                <div class="w-6 h-6 bg-orange-400 rounded-full flex items-center justify-center mr-2">
+                                    <span class="text-white text-xs font-bold">AI</span>
+                                </div>
+                                ${isEmergency ? '<span class="bg-red-500 text-white px-2 py-1 rounded text-xs ml-2">🚨 EMERGENCY</span>' : ''}
+                            </div>
+                            ${response}
+                            ${topics.length > 0 ? `
+                                <div class="mt-2 flex flex-wrap gap-1">
+                                    ${topics.map(topic => `<span class="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs">${topic}</span>`).join('')}
+                                </div>
+                            ` : ''}
+                        </div>
+                    </div>
+                `;
+
+                if (isEmergency) {
+                    setTimeout(() => {
+                        messages.innerHTML += `
+                            <div class="mb-4">
+                                <div class="bg-red-100 border border-red-300 p-3 rounded-lg text-red-800">
+                                    <h4 class="font-bold mb-2">🆘 Emergency Resources Activated</h4>
+                                    <div class="text-sm space-y-1">
+                                        <div>Crisis Helpline: 0800 567 567</div>
+                                        <div>Suicide Prevention: 0800 12 13 14</div>
+                                        <div>Emergency Services: 10177</div>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                        messages.scrollTop = messages.scrollHeight;
+                    }, 1000);
+                }
+
+                messages.scrollTop = messages.scrollHeight;
+            }, 1500);
+        }
+
+        function startUSSDDemo() {
+            const ussdScreen = document.getElementById('ussdScreen');
+
+            // Step 1: Dialing
+            ussdScreen.innerHTML = `
+                <div class="text-center">
+                    Dialing *134*4357#...
+                    <br><br>
+                    <div class="typing-animation">Connecting...</div>
+                </div>
+            `;
+
+            setTimeout(() => {
+                // Step 2: USSD Menu
+                ussdScreen.innerHTML = `
+                    <div>
+                        Mobile Spo Health AI
+                        <br>
+                        1. Get Health Advice
+                        <br>
+                        2. Emergency Help
+                        <br>
+                        3. Find Clinic
+                        <br>
+                        4. My Health Record
+                        <br><br>
+                        Reply with option number
+                        <br>
+                        <div class="typing-animation">Waiting for input...</div>
+                    </div>
+                `;
+            }, 2000);
+
+            setTimeout(() => {
+                // Step 3: User selects option 1
+                ussdScreen.innerHTML = `
+                    <div>
+                        You selected: Health Advice
+                        <br><br>
+                        Our AI will call you back
+                        in 30 seconds to discuss
+                        your health concerns.
+                        <br><br>
+                        The call is FREE and your
+                        data stays private.
+                        <br><br>
+                        <div class="typing-animation">Preparing callback...</div>
+                    </div>
+                `;
+            }, 4000);
+
+            setTimeout(() => {
+                // Step 4: Incoming call simulation
+                ussdScreen.innerHTML = `
+                    <div class="text-center">
+                        <div class="text-2xl mb-4">📞</div>
+                        INCOMING CALL
+                        <br>
+                        Mobile Spo AI
+                        <br>
+                        +27 11 123 4567
+                        <br><br>
+                        <div class="bg-green-600 p-2 rounded">
+                            ANSWER
+                        </div>
+                        <br>
+                        <div class="bg-red-600 p-2 rounded">
+                            DECLINE
+                        </div>
+                    </div>
+                `;
+            }, 6000);
+
+            setTimeout(() => {
+                // Step 5: Voice conversation
+                ussdScreen.innerHTML = `
+                    <div class="text-center">
+                        <div class="text-2xl mb-4">🎤</div>
+                        CALL CONNECTED
+                        <br><br>
+                        AI: "Hello! I'm your health
+                        assistant. How can I help
+                        you today?"
+                        <br><br>
+                        You: "I have a headache"
+                        <br><br>
+                        AI: "I understand. Can you
+                        describe the pain? Is it
+                        sharp or dull?"
+                        <br><br>
+                        <div class="typing-animation">Listening...</div>
+                    </div>
+                `;
+            }, 8000);
+        }
+
+        // Initialize slide counter
+        document.getElementById('slideCounter').textContent = `1 / ${totalSlides}`;
+    </script>
+
+    <!-- Slide 9: Monetization Strategy -->
+    <section class="slide">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-5xl font-bold mb-12 text-center">Revenue Model</h2>
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                <div class="bg-green-900 bg-opacity-30 p-6 rounded-lg border border-green-500">
+                    <h3 class="text-2xl font-bold mb-4 text-green-400">Freemium Model</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="font-bold text-green-300">Free Tier</h4>
+                            <ul class="text-sm space-y-1">
+                                <li>• 10 AI consultations/month</li>
+                                <li>• Basic emergency detection</li>
+                                <li>• USSD access included</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-green-300">Premium ($5/month)</h4>
+                            <ul class="text-sm space-y-1">
+                                <li>• Unlimited consultations</li>
+                                <li>• Advanced health tracking</li>
+                                <li>• Priority emergency response</li>
+                                <li>• Family accounts (5 members)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-blue-900 bg-opacity-30 p-6 rounded-lg border border-blue-500">
+                    <h3 class="text-2xl font-bold mb-4 text-blue-400">B2B Healthcare</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="font-bold text-blue-300">Clinics & Hospitals</h4>
+                            <ul class="text-sm space-y-1">
+                                <li>• White-label AI assistant</li>
+                                <li>• Patient triage system</li>
+                                <li>• $500-2000/month per facility</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-blue-300">Insurance Companies</h4>
+                            <ul class="text-sm space-y-1">
+                                <li>• Risk assessment tools</li>
+                                <li>• Preventive care insights</li>
+                                <li>• $50K-200K annual contracts</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-purple-900 bg-opacity-30 p-6 rounded-lg border border-purple-500">
+                    <h3 class="text-2xl font-bold mb-4 text-purple-400">Government & NGOs</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="font-bold text-purple-300">Public Health</h4>
+                            <ul class="text-sm space-y-1">
+                                <li>• Population health monitoring</li>
+                                <li>• Disease outbreak detection</li>
+                                <li>• $100K-1M government contracts</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-purple-300">International Aid</h4>
+                            <ul class="text-sm space-y-1">
+                                <li>• WHO partnership programs</li>
+                                <li>• USAID health initiatives</li>
+                                <li>• Grant funding: $500K-5M</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-gray-800 p-8 rounded-lg">
+                <h3 class="text-3xl font-bold mb-6 text-center">5-Year Revenue Projection</h3>
+                <div class="grid md:grid-cols-5 gap-4 text-center">
+                    <div>
+                        <div class="text-2xl font-bold text-blue-400">Year 1</div>
+                        <div class="text-lg">$500K</div>
+                        <div class="text-sm text-gray-400">10K users</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-green-400">Year 2</div>
+                        <div class="text-lg">$2.5M</div>
+                        <div class="text-sm text-gray-400">50K users</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-yellow-400">Year 3</div>
+                        <div class="text-lg">$8M</div>
+                        <div class="text-sm text-gray-400">200K users</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-orange-400">Year 4</div>
+                        <div class="text-lg">$25M</div>
+                        <div class="text-sm text-gray-400">1M users</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-red-400">Year 5</div>
+                        <div class="text-lg">$75M</div>
+                        <div class="text-sm text-gray-400">5M users</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 10: Implementation Roadmap -->
+    <section class="slide">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-5xl font-bold mb-12 text-center">Implementation Roadmap</h2>
+            <div class="space-y-8">
+                <div class="bg-blue-900 bg-opacity-30 p-6 rounded-lg border border-blue-500">
+                    <h3 class="text-2xl font-bold mb-4 text-blue-400">Phase 1: MVP Development (Months 1-3)</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-bold mb-2">Technical Milestones</h4>
+                            <ul class="space-y-1 text-sm">
+                                <li>✅ Core medical AI engine</li>
+                                <li>✅ Emergency detection system</li>
+                                <li>✅ React Native mobile app</li>
+                                <li>🔄 USSD gateway integration</li>
+                                <li>🔄 Voice AI for feature phones</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold mb-2">Business Milestones</h4>
+                            <ul class="space-y-1 text-sm">
+                                <li>🔄 Telecom operator partnerships</li>
+                                <li>🔄 Healthcare provider pilots</li>
+                                <li>🔄 Regulatory compliance (POPIA)</li>
+                                <li>🔄 Initial user testing (1K users)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-green-900 bg-opacity-30 p-6 rounded-lg border border-green-500">
+                    <h3 class="text-2xl font-bold mb-4 text-green-400">Phase 2: Market Launch (Months 4-6)</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-bold mb-2">Product Features</h4>
+                            <ul class="space-y-1 text-sm">
+                                <li>• Multi-language support (4 languages)</li>
+                                <li>• Advanced emergency protocols</li>
+                                <li>• Health data analytics dashboard</li>
+                                <li>• Integration with local clinics</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold mb-2">Go-to-Market</h4>
+                            <ul class="space-y-1 text-sm">
+                                <li>• Launch in 3 provinces</li>
+                                <li>• Partnership with Discovery Health</li>
+                                <li>• NGO collaboration (Doctors Without Borders)</li>
+                                <li>• Target: 10K active users</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-purple-900 bg-opacity-30 p-6 rounded-lg border border-purple-500">
+                    <h3 class="text-2xl font-bold mb-4 text-purple-400">Phase 3: Scale & Expansion (Months 7-12)</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-bold mb-2">Technology Enhancement</h4>
+                            <ul class="space-y-1 text-sm">
+                                <li>• AI model improvements (BioBERT)</li>
+                                <li>• Predictive health analytics</li>
+                                <li>• Telemedicine integration</li>
+                                <li>• IoT device connectivity</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold mb-2">Market Expansion</h4>
+                            <ul class="space-y-1 text-sm">
+                                <li>• National rollout (all 9 provinces)</li>
+                                <li>• SADC region expansion</li>
+                                <li>• Government health department contracts</li>
+                                <li>• Target: 100K active users</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 11: Team & Investment -->
+    <section class="slide">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-5xl font-bold mb-12 text-center">Investment Opportunity</h2>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-3xl font-bold mb-8 text-blue-400">Funding Requirements</h3>
+                    <div class="space-y-6">
+                        <div class="bg-blue-900 bg-opacity-30 p-6 rounded-lg border border-blue-500">
+                            <h4 class="text-2xl font-bold mb-4">Seed Round: $500K</h4>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex justify-between">
+                                    <span>Product Development</span>
+                                    <span>40% ($200K)</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Team Expansion</span>
+                                    <span>30% ($150K)</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Market Validation</span>
+                                    <span>20% ($100K)</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Operations & Legal</span>
+                                    <span>10% ($50K)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-green-900 bg-opacity-30 p-6 rounded-lg border border-green-500">
+                            <h4 class="text-2xl font-bold mb-4">Series A: $3M (Year 2)</h4>
+                            <ul class="space-y-1 text-sm">
+                                <li>• Scale technology infrastructure</li>
+                                <li>• Regional expansion (SADC)</li>
+                                <li>• Advanced AI model development</li>
+                                <li>• Strategic partnerships</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-3xl font-bold mb-8 text-green-400">Why Invest Now?</h3>
+                    <div class="space-y-4">
+                        <div class="bg-gray-800 p-4 rounded-lg">
+                            <h4 class="text-xl font-bold mb-2 text-green-300">🚀 First Mover Advantage</h4>
+                            <p class="text-sm">First privacy-first medical AI with feature phone support in Africa</p>
+                        </div>
+
+                        <div class="bg-gray-800 p-4 rounded-lg">
+                            <h4 class="text-xl font-bold mb-2 text-blue-300">📈 Massive Market</h4>
+                            <p class="text-sm">1.1B underserved population in Sub-Saharan Africa</p>
+                        </div>
+
+                        <div class="bg-gray-800 p-4 rounded-lg">
+                            <h4 class="text-xl font-bold mb-2 text-purple-300">🏥 Social Impact</h4>
+                            <p class="text-sm">Potential to save thousands of lives through early intervention</p>
+                        </div>
+
+                        <div class="bg-gray-800 p-4 rounded-lg">
+                            <h4 class="text-xl font-bold mb-2 text-yellow-300">💰 Strong Unit Economics</h4>
+                            <p class="text-sm">Low marginal cost, high lifetime value, multiple revenue streams</p>
+                        </div>
+
+                        <div class="bg-gray-800 p-4 rounded-lg">
+                            <h4 class="text-xl font-bold mb-2 text-red-300">🛡️ Regulatory Moat</h4>
+                            <p class="text-sm">Privacy-first approach creates competitive advantage</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 bg-yellow-900 bg-opacity-30 p-6 rounded-lg border border-yellow-500">
+                        <h4 class="text-xl font-bold mb-4 text-yellow-400">Expected Returns</h4>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <span>5-Year Revenue Projection</span>
+                                <span class="font-bold">$75M</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Potential Valuation (Year 5)</span>
+                                <span class="font-bold">$500M</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>ROI for Seed Investors</span>
+                                <span class="font-bold text-green-400">100x+</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 12: Call to Action -->
+    <section class="slide emergency-gradient">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-6xl font-bold mb-8">Join the Healthcare Revolution</h2>
+            <p class="text-2xl mb-12 text-orange-100">Help us democratize healthcare access across Africa</p>
+
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                <div class="bg-white bg-opacity-10 p-6 rounded-lg backdrop-blur-sm">
+                    <i class="fas fa-users text-4xl mb-4 text-yellow-200"></i>
+                    <h3 class="text-2xl font-bold mb-4">1 Million Lives</h3>
+                    <p>Potential to impact 1M+ people in first 3 years</p>
+                </div>
+                <div class="bg-white bg-opacity-10 p-6 rounded-lg backdrop-blur-sm">
+                    <i class="fas fa-globe-africa text-4xl mb-4 text-green-200"></i>
+                    <h3 class="text-2xl font-bold mb-4">15 Countries</h3>
+                    <p>Expansion across Sub-Saharan Africa by Year 5</p>
+                </div>
+                <div class="bg-white bg-opacity-10 p-6 rounded-lg backdrop-blur-sm">
+                    <i class="fas fa-chart-line text-4xl mb-4 text-blue-200"></i>
+                    <h3 class="text-2xl font-bold mb-4">$75M Revenue</h3>
+                    <p>Projected annual revenue by Year 5</p>
+                </div>
+            </div>
+
+            <div class="space-y-6">
+                <h3 class="text-3xl font-bold mb-6">Ready to Make an Impact?</h3>
+                <div class="flex justify-center space-x-6">
+                    <button class="bg-white text-red-600 px-8 py-4 rounded-lg font-bold text-xl hover:bg-gray-100 pulse-animation">
+                        <i class="fas fa-handshake mr-2"></i>
+                        Partner With Us
+                    </button>
+                    <button class="bg-yellow-500 text-black px-8 py-4 rounded-lg font-bold text-xl hover:bg-yellow-400 pulse-animation">
+                        <i class="fas fa-rocket mr-2"></i>
+                        Invest Now
+                    </button>
+                </div>
+
+                <div class="mt-8 text-lg">
+                    <p class="mb-4">Contact: <span class="font-bold">team@mobilespo.com</span></p>
+                    <p>Demo: <span class="font-bold">demo.mobilespo.com</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

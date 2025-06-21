@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Spo - Privacy-First Medical AI for Africa</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .medical-gradient {
+            background: linear-gradient(135deg, #2563eb 0%, #10b981 100%);
+        }
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .demo-phone {
+            width: 280px;
+            height: 560px;
+            background: #1f2937;
+            border-radius: 30px;
+            padding: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        .demo-screen {
+            width: 100%;
+            height: 100%;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="gradient-bg text-white">
+        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold">
+                <i class="fas fa-heartbeat mr-2"></i>
+                Mobile Spo
+            </div>
+            <div class="space-x-6">
+                <a href="#demo" class="hover:text-blue-200">Demo</a>
+                <a href="#features" class="hover:text-blue-200">Features</a>
+                <a href="#contact" class="hover:text-blue-200">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white py-20">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-5xl font-bold mb-6">Privacy-First Medical AI for Africa</h1>
+            <p class="text-xl mb-8 max-w-3xl mx-auto">
+                The world's first medical AI that works on smartphones AND feature phones, 
+                with 100% local processing to protect your privacy.
+            </p>
+            <div class="flex justify-center space-x-4 mb-12">
+                <button onclick="scrollToDemo()" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-bold hover:bg-gray-100 pulse-animation">
+                    Try Live Demo
+                </button>
+                <button class="border-2 border-white px-8 py-3 rounded-lg font-bold hover:bg-white hover:text-blue-600">
+                    Learn More
+                </button>
+            </div>
+            
+            <!-- Key Stats -->
+            <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+                <div class="text-center">
+                    <div class="text-4xl font-bold mb-2">60M</div>
+                    <p>South Africans need better healthcare access</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold mb-2">100%</div>
+                    <p>Private - all processing happens locally</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold mb-2">24/7</div>
+                    <p>Emergency detection and crisis intervention</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-16 text-gray-800">Revolutionary Features</h2>
+            <div class="grid md:grid-cols-3 gap-12">
+                <div class="text-center">
+                    <div class="bg-blue-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-shield-alt text-3xl text-blue-600"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">100% Private</h3>
+                    <p class="text-gray-600">All medical AI processing happens locally. Your health data never leaves your infrastructure.</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="bg-green-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-mobile-alt text-3xl text-green-600"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Universal Access</h3>
+                    <p class="text-gray-600">Works on smartphones AND feature phones via USSD. No one gets left behind.</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="bg-red-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-ambulance text-3xl text-red-600"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Emergency Detection</h3>
+                    <p class="text-gray-600">Automatic crisis intervention with South African emergency services integration.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="py-20 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-16 text-gray-800">Live Demo</h2>
+            <div class="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+                <!-- Smartphone Demo -->
+                <div class="text-center">
+                    <h3 class="text-2xl font-bold mb-6 text-blue-600">Smartphone App</h3>
+                    <div class="demo-phone mx-auto">
+                        <div class="demo-screen">
+                            <div id="smartphoneDemo" class="h-full flex flex-col">
+                                <div class="bg-blue-600 text-white p-3 text-center">
+                                    <h4 class="font-bold">Mobile Spo AI</h4>
+                                </div>
+                                <div class="flex-1 p-4 overflow-y-auto">
+                                    <div class="mb-4">
+                                        <div class="bg-gray-100 p-3 rounded-lg text-gray-800 text-sm">
+                                            <div class="flex items-center mb-2">
+                                                <div class="w-6 h-6 bg-orange-400 rounded-full flex items-center justify-center mr-2">
+                                                    <span class="text-white text-xs font-bold">AI</span>
+                                                </div>
+                                            </div>
+                                            Hello! I'm your AI health assistant. How can I help you today?
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-3 border-t">
+                                    <div class="flex space-x-2">
+                                        <input type="text" id="demoInput" placeholder="Try: 'I have a headache'" class="flex-1 p-2 border rounded text-gray-800 text-sm">
+                                        <button onclick="sendDemoMessage()" class="bg-blue-600 text-white px-3 py-2 rounded text-sm">Send</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button onclick="sendDemoMessage()" class="mt-4 bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">
+                        Try Demo
+                    </button>
+                </div>
+
+                <!-- USSD Demo -->
+                <div class="text-center">
+                    <h3 class="text-2xl font-bold mb-6 text-green-600">Feature Phone (USSD)</h3>
+                    <div class="bg-gray-800 p-6 rounded-lg max-w-sm mx-auto">
+                        <div class="bg-green-400 text-black p-2 text-center font-bold mb-4 rounded">
+                            Nokia 3310
+                        </div>
+                        <div id="ussdDemo" class="bg-black text-green-400 p-4 rounded font-mono text-sm min-h-48">
+                            <div class="text-center">
+                                Dial: *134*4357#
+                                <br><br>
+                                Mobile Spo Health AI
+                                <br>
+                                1. Get Health Advice
+                                <br>
+                                2. Emergency Help
+                                <br>
+                                3. Find Clinic
+                                <br><br>
+                                Reply with option number
+                            </div>
+                        </div>
+                        <div class="mt-4 grid grid-cols-3 gap-1">
+                            <button class="bg-gray-600 p-1 rounded text-xs">1</button>
+                            <button class="bg-gray-600 p-1 rounded text-xs">2</button>
+                            <button class="bg-gray-600 p-1 rounded text-xs">3</button>
+                        </div>
+                    </div>
+                    <button onclick="startUSSDDemo()" class="mt-4 bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">
+                        Demo USSD
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="medical-gradient text-white py-20">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold mb-6">Ready to Revolutionize Healthcare?</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">
+                Join us in democratizing healthcare access across Africa with privacy-first medical AI.
+            </p>
+            <div class="flex justify-center space-x-4">
+                <button class="bg-white text-blue-600 px-8 py-3 rounded-lg font-bold hover:bg-gray-100">
+                    Partner With Us
+                </button>
+                <button class="border-2 border-white px-8 py-3 rounded-lg font-bold hover:bg-white hover:text-blue-600">
+                    Invest Now
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Mobile Spo</h3>
+                    <p class="text-gray-400">Privacy-first medical AI for Africa</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Contact</h3>
+                    <p class="text-gray-400">team@mobilespo.com</p>
+                    <p class="text-gray-400">+27 11 123 4567</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Emergency Resources</h3>
+                    <p class="text-gray-400">Crisis Helpline: 0800 567 567</p>
+                    <p class="text-gray-400">Emergency Services: 10177</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Mobile Spo. Saving lives through technology.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function scrollToDemo() {
+            document.getElementById('demo').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function sendDemoMessage() {
+            const input = document.getElementById('demoInput');
+            const demo = document.getElementById('smartphoneDemo');
+            const message = input.value.trim() || "I have a headache";
+            
+            // Add user message
+            const messagesDiv = demo.querySelector('.overflow-y-auto');
+            messagesDiv.innerHTML += `
+                <div class="mb-4 text-right">
+                    <div class="bg-blue-600 text-white p-3 rounded-lg inline-block text-sm">
+                        ${message}
+                    </div>
+                </div>
+            `;
+            
+            input.value = '';
+            
+            // Simulate AI response
+            setTimeout(() => {
+                let response = "I understand you're experiencing discomfort. Can you describe your symptoms in more detail?";
+                let isEmergency = false;
+                
+                if (message.toLowerCase().includes('hurt myself') || message.toLowerCase().includes('suicide')) {
+                    response = "I'm very concerned about you. Please know that help is available. I'm connecting you with emergency resources right now.";
+                    isEmergency = true;
+                }
+                
+                messagesDiv.innerHTML += `
+                    <div class="mb-4">
+                        <div class="bg-gray-100 p-3 rounded-lg text-gray-800 text-sm">
+                            <div class="flex items-center mb-2">
+                                <div class="w-6 h-6 bg-orange-400 rounded-full flex items-center justify-center mr-2">
+                                    <span class="text-white text-xs font-bold">AI</span>
+                                </div>
+                                ${isEmergency ? '<span class="bg-red-500 text-white px-2 py-1 rounded text-xs ml-2">🚨 EMERGENCY</span>' : ''}
+                            </div>
+                            ${response}
+                        </div>
+                    </div>
+                `;
+                
+                messagesDiv.scrollTop = messagesDiv.scrollHeight;
+            }, 1000);
+        }
+
+        function startUSSDDemo() {
+            const ussdDemo = document.getElementById('ussdDemo');
+            
+            ussdDemo.innerHTML = `
+                <div class="text-center">
+                    You selected: Health Advice
+                    <br><br>
+                    Our AI will call you back
+                    in 30 seconds.
+                    <br><br>
+                    The call is FREE and your
+                    data stays private.
+                    <br><br>
+                    Preparing callback...
+                </div>
+            `;
+            
+            setTimeout(() => {
+                ussdDemo.innerHTML = `
+                    <div class="text-center">
+                        📞 INCOMING CALL
+                        <br>
+                        Mobile Spo AI
+                        <br>
+                        +27 11 123 4567
+                        <br><br>
+                        [ANSWER] [DECLINE]
+                        <br><br>
+                        Voice AI ready to help
+                        with your health questions
+                    </div>
+                `;
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
