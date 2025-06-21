@@ -16,11 +16,20 @@ import appointmentRoutes from './routes/appointments.js';
 import emergencyRoutes from './routes/emergency.js';
 import userRoutes from './routes/users.js';
 import testRoutes from './routes/test.js';
+import ussdRoutes from './routes/ussd.js';
 
 // Import middleware
 import { errorHandler } from './middleware/errorHandler.js';
 import { authMiddleware } from './middleware/auth.js';
 import { healthDataEncryption } from './middleware/encryption.js';
+import {
+  securityHeaders,
+  healthcareRateLimit,
+  auditLogger,
+  sanitizeHealthInput,
+  enforceDataRetention,
+  privacyFilter
+} from './middleware/security.js';
 
 // Import services
 import { connectDatabase } from './database/connection.js';
@@ -41,36 +50,12 @@ const io = new Server(server, {
 
 const PORT = process.env.PORT || 3001;
 
-// Security middleware
-app.use(helmet({
-  contentSecurityPolicy: {
-    directives: {
-      defaultSrc: ["'self'"],
-      styleSrc: ["'self'", "'unsafe-inline'"],
-      scriptSrc: ["'self'"],
-      imgSrc: ["'self'", "data:", "https:"],
-    },
-  },
-  hsts: {
-    maxAge: 31536000,
-    includeSubDomains: true,
-    preload: true
-  }
-}));
-
-// Rate limiting
-const limiter = rateLimit({
-  windowMs: parseInt(process.env.RATE_LIMIT_WINDOW_MS) || 15 * 60 * 1000,
-  max: parseInt(process.env.RATE_LIMIT_MAX_REQUESTS) || 100,
-  message: {
-    error: 'Too many requests from this IP, please try again later.',
-    retryAfter: Math.ceil((parseInt(process.env.RATE_LIMIT_WINDOW_MS) || 900000) / 1000)
-  },
-  standardHeaders: true,
-  legacyHeaders: false,
-});
-
-app.use(limiter);
+// Enhanced Security middleware for healthcare data
+app.use(securityHeaders);
+app.use(healthcareRateLimit);
+app.use(sanitizeHealthInput);
+app.use(enforceDataRetention);
+app.use(privacyFilter);
 
 // CORS configuration
 app.use(cors({
@@ -108,13 +93,16 @@ const apiPrefix = `/api/${process.env.API_VERSION || 'v1'}`;
 // Test routes (no authentication required)
 app.use(`${apiPrefix}/test`, testRoutes);
 
-// Protected routes
-app.use(`${apiPrefix}/auth`, authRoutes);
-app.use(`${apiPrefix}/chat`, authMiddleware, healthDataEncryption, chatRoutes);
-app.use(`${apiPrefix}/health`, authMiddleware, healthDataEncryption, healthRoutes);
-app.use(`${apiPrefix}/appointments`, authMiddleware, appointmentRoutes);
-app.use(`${apiPrefix}/emergency`, emergencyRoutes);
-app.use(`${apiPrefix}/users`, authMiddleware, userRoutes);
+// USSD routes (special authentication for telecom providers)
+app.use(`${apiPrefix}/ussd`, ussdRoutes);
+
+// Protected routes with enhanced security and audit logging
+app.use(`${apiPrefix}/auth`, auditLogger('authentication'), authRoutes);
+app.use(`${apiPrefix}/chat`, auditLogger('health_data_chat'), authMiddleware, healthDataEncryption, chatRoutes);
+app.use(`${apiPrefix}/health`, auditLogger('health_data_access'), authMiddleware, healthDataEncryption, healthRoutes);
+app.use(`${apiPrefix}/appointments`, auditLogger('appointment_management'), authMiddleware, appointmentRoutes);
+app.use(`${apiPrefix}/emergency`, auditLogger('emergency_access'), emergencyRoutes);
+app.use(`${apiPrefix}/users`, auditLogger('user_management'), authMiddleware, userRoutes);
 
 // Socket.io for real-time features
 io.use((socket, next) => {

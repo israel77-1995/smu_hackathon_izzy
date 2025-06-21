@@ -1,0 +1,67 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+rule_files:
+  - "alert_rules.yml"
+
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+          - alertmanager:9093
+
+scrape_configs:
+  # Prometheus itself
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  # Mobile Spo Backend
+  - job_name: 'mobile-spo-backend'
+    static_configs:
+      - targets: ['backend:3001']
+    metrics_path: '/metrics'
+    scrape_interval: 30s
+    scrape_timeout: 10s
+
+  # Node Exporter for system metrics
+  - job_name: 'node-exporter'
+    static_configs:
+      - targets: ['node-exporter:9100']
+
+  # MongoDB Exporter
+  - job_name: 'mongodb-exporter'
+    static_configs:
+      - targets: ['mongodb-exporter:9216']
+
+  # Redis Exporter
+  - job_name: 'redis-exporter'
+    static_configs:
+      - targets: ['redis-exporter:9121']
+
+  # Nginx Exporter
+  - job_name: 'nginx-exporter'
+    static_configs:
+      - targets: ['nginx-exporter:9113']
+
+  # Custom health metrics
+  - job_name: 'mobile-spo-health-metrics'
+    static_configs:
+      - targets: ['backend:3001']
+    metrics_path: '/api/v1/metrics/health'
+    scrape_interval: 60s
+
+  # USSD metrics
+  - job_name: 'mobile-spo-ussd-metrics'
+    static_configs:
+      - targets: ['backend:3001']
+    metrics_path: '/api/v1/ussd/metrics'
+    scrape_interval: 30s
+
+  # Appointment metrics
+  - job_name: 'mobile-spo-appointment-metrics'
+    static_configs:
+      - targets: ['backend:3001']
+    metrics_path: '/api/v1/appointments/metrics'
+    scrape_interval: 60s

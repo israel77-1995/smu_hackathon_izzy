@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Spo USSD Simulator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .simulator-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .phone-header {
+            background: #2d3748;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .phone-header h1 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .phone-header p {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        .ussd-screen {
+            background: #000;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            padding: 20px;
+            min-height: 300px;
+            white-space: pre-wrap;
+            line-height: 1.4;
+        }
+
+        .input-section {
+            background: #f7fafc;
+            padding: 20px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #2d3748;
+            font-size: 14px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5a67d8;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: #e2e8f0;
+            color: #2d3748;
+        }
+
+        .btn-secondary:hover {
+            background: #cbd5e0;
+        }
+
+        .status-bar {
+            background: #48bb78;
+            color: white;
+            padding: 10px 20px;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        .status-bar.error {
+            background: #f56565;
+        }
+
+        .demo-info {
+            background: #edf2f7;
+            padding: 15px 20px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .demo-info h3 {
+            color: #2d3748;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .demo-info p {
+            color: #4a5568;
+            font-size: 12px;
+            line-height: 1.4;
+        }
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 5px;
+            margin-top: 10px;
+        }
+
+        .quick-btn {
+            padding: 8px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .quick-btn:hover {
+            background: #5a67d8;
+        }
+
+        @media (max-width: 480px) {
+            .simulator-container {
+                margin: 10px;
+            }
+            
+            .ussd-screen {
+                font-size: 12px;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="simulator-container">
+        <div class="phone-header">
+            <h1>📱 Feature Phone USSD</h1>
+            <p>Mobile Spo Health Assistant</p>
+        </div>
+
+        <div class="status-bar" id="statusBar">
+            Ready to connect - Dial *123*456#
+        </div>
+
+        <div class="ussd-screen" id="ussdScreen">
+Welcome to Mobile Spo USSD Simulator!
+
+This simulates how users with basic phones can access healthcare through USSD codes.
+
+Click "Start Session" to begin or use quick actions below.
+        </div>
+
+        <div class="input-section">
+            <div class="input-group">
+                <label for="phoneNumber">Phone Number:</label>
+                <input type="text" id="phoneNumber" value="+27123456789" placeholder="+27123456789">
+            </div>
+
+            <div class="input-group">
+                <label for="userInput">Your Input:</label>
+                <input type="text" id="userInput" placeholder="Enter your choice or message">
+            </div>
+
+            <div class="button-group">
+                <button class="btn btn-primary" onclick="startSession()">Start Session</button>
+                <button class="btn btn-primary" onclick="sendInput()">Send</button>
+                <button class="btn btn-secondary" onclick="endSession()">End</button>
+            </div>
+
+            <div class="quick-actions">
+                <button class="quick-btn" onclick="quickAction('1')">1 - Health Chat</button>
+                <button class="quick-btn" onclick="quickAction('2')">2 - Emergency</button>
+                <button class="quick-btn" onclick="quickAction('3')">3 - Appointment</button>
+                <button class="quick-btn" onclick="quickAction('4')">4 - Health Tips</button>
+                <button class="quick-btn" onclick="quickAction('5')">5 - Language</button>
+                <button class="quick-btn" onclick="quickAction('0')">0 - Exit</button>
+            </div>
+        </div>
+
+        <div class="demo-info">
+            <h3>🌍 Universal Healthcare Access</h3>
+            <p>This USSD interface makes Mobile Spo accessible to anyone with a basic phone, ensuring healthcare support reaches all communities across South Africa, regardless of smartphone access or internet connectivity.</p>
+        </div>
+    </div>
+
+    <script>
+        let sessionId = null;
+        let sessionActive = false;
+
+        // API Configuration
+        const API_BASE_URL = 'http://localhost:3001/api/v1/ussd';
+
+        function generateSessionId() {
+            return 'ussd_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+        }
+
+        function updateStatus(message, isError = false) {
+            const statusBar = document.getElementById('statusBar');
+            statusBar.textContent = message;
+            statusBar.className = isError ? 'status-bar error' : 'status-bar';
+        }
+
+        function updateScreen(message) {
+            const screen = document.getElementById('ussdScreen');
+            screen.textContent = message;
+        }
+
+        function clearInput() {
+            document.getElementById('userInput').value = '';
+        }
+
+        async function startSession() {
+            try {
+                sessionId = generateSessionId();
+                sessionActive = true;
+                
+                updateStatus('Connecting to Mobile Spo...');
+                
+                const response = await sendUSSDRequest('');
+                
+                if (response.continueSession) {
+                    updateStatus('Connected - Session Active');
+                    updateScreen(response.message);
+                } else {
+                    updateStatus('Session ended');
+                    sessionActive = false;
+                }
+                
+            } catch (error) {
+                updateStatus('Connection failed - Using demo mode', true);
+                showDemoMenu();
+            }
+        }
+
+        async function sendInput() {
+            if (!sessionActive) {
+                updateStatus('No active session. Please start a session first.', true);
+                return;
+            }
+
+            const input = document.getElementById('userInput').value;
+            
+            try {
+                updateStatus('Sending...');
+                
+                const response = await sendUSSDRequest(input);
+                
+                updateScreen(response.message);
+                clearInput();
+                
+                if (response.continueSession) {
+                    updateStatus('Session Active - Waiting for input');
+                } else {
+                    updateStatus('Session ended');
+                    sessionActive = false;
+                    sessionId = null;
+                }
+                
+            } catch (error) {
+                updateStatus('Send failed - Check connection', true);
+                console.error('USSD Error:', error);
+            }
+        }
+
+        async function sendUSSDRequest(text) {
+            const phoneNumber = document.getElementById('phoneNumber').value;
+            
+            const response = await fetch(`${API_BASE_URL}/gateway`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    phoneNumber: phoneNumber,
+                    text: text,
+                    sessionId: sessionId
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            return await response.json();
+        }
+
+        function quickAction(input) {
+            document.getElementById('userInput').value = input;
+            if (sessionActive) {
+                sendInput();
+            } else {
+                startSession().then(() => {
+                    if (input !== '') {
+                        setTimeout(() => {
+                            document.getElementById('userInput').value = input;
+                            sendInput();
+                        }, 1000);
+                    }
+                });
+            }
+        }
+
+        function endSession() {
+            sessionActive = false;
+            sessionId = null;
+            updateStatus('Session ended by user');
+            updateScreen('Thank you for using Mobile Spo!\n\nYour health matters. Stay safe! 💚\n\nDial *123*456# anytime for health support.');
+        }
+
+        function showDemoMenu() {
+            sessionActive = true;
+            updateScreen(`🏥 Mobile Spo Health Assistant
+
+1. Health Chat
+2. Emergency Help  
+3. Book Appointment
+4. Health Tips
+5. Change Language
+0. Exit
+
+Choose an option (1-5) or 0 to exit:`);
+        }
+
+        // Handle Enter key in input field
+        document.getElementById('userInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                if (sessionActive) {
+                    sendInput();
+                } else {
+                    startSession();
+                }
+            }
+        });
+
+        // Auto-focus input field
+        document.getElementById('userInput').focus();
+    </script>
+</body>
+</html>
